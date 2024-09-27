@@ -3,6 +3,7 @@ package com.example.demo;
 import com.example.demo.answer.Answer;
 import com.example.demo.question.Question;
 import com.example.demo.question.QuestionRepository;
+import com.example.demo.question.QuestionService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,20 +20,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class DemoApplicationTests {
 
   @Autowired
-  private QuestionRepository questionRepository;
+  private QuestionService questionService;
 
   @Test
   void testJpa() {
-    Question q1 = new Question();
-    q1.setSubject("테스트 제목");
-    q1.setContent("테스트 내용");
-    q1.setCreateDate(LocalDateTime.now());
-    this.questionRepository.save(q1);
-
-    Question q2 = new Question();
-    q2.setSubject("테스트 제목2");
-    q2.setContent("테스트 내용2");
-    q2.setCreateDate(LocalDateTime.now());
-    this.questionRepository.save(q2);
+   for(int i = 1; i <= 300; i++){
+     String subject = String.format("테스터 데이터입니다:[%03d]", i);
+     String content = "내용 없음 ";
+     this.questionService.create(subject, content);
+   }
   }
 }
