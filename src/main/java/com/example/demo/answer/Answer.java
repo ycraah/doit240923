@@ -1,6 +1,7 @@
 package com.example.demo.answer;
 
 import com.example.demo.question.Question;
+import com.example.demo.user.SiteUser;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,4 +24,7 @@ public class Answer {
 
   @ManyToOne
   private Question question;
+
+  @ManyToOne
+  private SiteUser author;
 }
